@@ -17,3 +17,13 @@ h1 span { color: var(--accent); }
 a:focus-visible { outline: 3px solid #bd7519; outline-offset: 5px; }
 footer { max-width: 1120px; margin: 56px auto 0; padding: 24px 32px; border-top: 1px solid #d9ded6; color: #53666a; font-size: 13px; }
 @media (max-width: 600px) { .site-header { flex-direction: column; align-items: flex-start; } .hero { padding: 56px 0; } }
+
+.introduction { display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; padding: 48px 0; border-top: 1px solid #d9ded6; align-items: start; }
+h2 { font-size: clamp(28px, 4vw, 38px); line-height: 1.2; letter-spacing: -1px; margin: 18px 0 24px; }
+.introduction p:not(.eyebrow) { color: #53666a; max-width: 56ch; }
+.learning-card { background: #e8ede4; border: 1px solid #d9ded6; padding: 30px; border-radius: 16px; }
+.learning-card h3 { font-size: 18px; margin: 0 0 22px; }
+.learning-card ul { margin: 0; padding: 0; list-style: none; }
+.learning-card li { padding: 16px 0; border-top: 1px solid #ccd6c8; font-size: 14px; }
+.learning-card li span { color: var(--accent); font-size: 12px; font-weight: 700; margin-right: 14px; }
+@media (max-width: 760px) { .introduction { grid-template-columns: 1fr; gap: 24px; } .learning-card { padding: 24px; } }
