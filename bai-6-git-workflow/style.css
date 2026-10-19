@@ -27,6 +27,3 @@ h2 { font-size: clamp(28px, 4vw, 38px); line-height: 1.2; letter-spacing: -1px; 
 .learning-card li { padding: 16px 0; border-top: 1px solid #ccd6c8; font-size: 14px; }
 .learning-card li span { color: var(--accent); font-size: 12px; font-weight: 700; margin-right: 14px; }
 @media (max-width: 760px) { .introduction { grid-template-columns: 1fr; gap: 24px; } .learning-card { padding: 24px; } }
-
-/* Lỗi có chủ ý để thực hành hoàn tác commit trong Bài 6. */
-.introduction { display: none; }
