@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Chuyến tàu dưới bầu trời sao</title>
+  <desc id="desc">Một đoàn tàu đi qua núi trong đêm đầy sao</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#121936"/>
+      <stop offset="1" stop-color="#3c4b77"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#263650"/>
+      <stop offset="1" stop-color="#10182b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="500" fill="url(#sky)"/>
+  <g fill="#fff4ca" opacity=".9">
+    <circle cx="94" cy="80" r="3"/><circle cx="165" cy="145" r="2"/><circle cx="245" cy="64" r="4"/>
+    <circle cx="350" cy="118" r="2"/><circle cx="455" cy="51" r="3"/><circle cx="560" cy="150" r="3"/>
+    <circle cx="670" cy="76" r="2"/><circle cx="758" cy="126" r="4"/><circle cx="870" cy="46" r="3"/>
+    <circle cx="960" cy="136" r="2"/><circle cx="1080" cy="72" r="4"/><circle cx="1140" cy="170" r="2"/>
+  </g>
+  <circle cx="940" cy="105" r="54" fill="#fff1b8"/>
+  <circle cx="920" cy="90" r="54" fill="#17203e"/>
+  <path d="M0 315 170 190l165 125 170-148 192 148 171-125 182 125 140-105v290H0Z" fill="#34435f"/>
+  <path d="M0 358 210 268l150 86 210-116 190 118 190-92 250 105v131H0Z" fill="url(#ground)"/>
+  <path d="M-20 425c310-60 650-58 1240 20" fill="none" stroke="#d7c093" stroke-width="8"/>
+  <g transform="translate(380 327)">
+    <rect x="0" y="0" width="310" height="92" rx="10" fill="#1d2948" stroke="#a96a40" stroke-width="5"/>
+    <rect x="30" y="20" width="54" height="38" rx="3" fill="#ffd978"/>
+    <rect x="107" y="20" width="54" height="38" rx="3" fill="#ffd978"/>
+    <rect x="184" y="20" width="54" height="38" rx="3" fill="#ffd978"/>
+    <rect x="261" y="20" width="26" height="67" rx="2" fill="#813e2e"/>
+    <circle cx="65" cy="94" r="19" fill="#111827"/><circle cx="245" cy="94" r="19" fill="#111827"/>
+  </g>
+  <path d="M355 349c-35-34-76-42-109-20 37 3 55 18 69 45Z" fill="#d7dce9" opacity=".55"/>
+</svg>
