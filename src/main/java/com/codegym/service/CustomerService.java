@@ -1,0 +1,3 @@
+package com.codegym.service;
+import com.codegym.model.Customer; import java.util.*;
+public class CustomerService { private static final Map<Integer,Customer> data=new LinkedHashMap<>(); private static int next=4; static{data.put(1,new Customer(1,"Nguyễn Văn An","an@gmail.com","Hà Nội"));data.put(2,new Customer(2,"Trần Thị Bình","binh@gmail.com","Đà Nẵng"));data.put(3,new Customer(3,"Lê Minh Châu","chau@gmail.com","TP.HCM"));} public List<Customer> findAll(){return new ArrayList<>(data.values());} public Customer find(int id){return data.get(id);} public void save(Customer c){if(c.getId()==0)c.setId(next++);data.put(c.getId(),c);} public void delete(int id){data.remove(id);} }

@@ -1,0 +1,1 @@
+<%@ page contentType="text/html;charset=UTF-8" %><h1>Chi tiết khách hàng</h1><p>ID: ${customer.id}</p><p>Tên: ${customer.name}</p><p>Email: ${customer.email}</p><p>Địa chỉ: ${customer.address}</p><a href="customers">Quay lại</a>
