@@ -30,5 +30,15 @@ public class UserDAO implements IUserDAO {
    }catch(Exception e){c.rollback();throw e;}finally{c.setAutoCommit(true);}
   }
  }
+ public void addUserTransaction(User u)throws SQLException{
+  try(Connection c=connection()){
+   c.setAutoCommit(false);
+   try(PreparedStatement add=c.prepareStatement("INSERT INTO users(name,email,country) VALUES(?,?,?)",Statement.RETURN_GENERATED_KEYS);PreparedStatement audit=c.prepareStatement("INSERT INTO user_audit(user_id,action_name) VALUES(?,?)")){
+    add.setString(1,u.getName());add.setString(2,u.getEmail());add.setString(3,u.getCountry());add.executeUpdate();
+    try(ResultSet keys=add.getGeneratedKeys()){if(!keys.next())throw new SQLException("Không lấy được id User");audit.setInt(1,keys.getInt(1));}
+    audit.setString(2,"CREATE");audit.executeUpdate();c.commit();
+   }catch(SQLException e){c.rollback();throw e;}finally{c.setAutoCommit(true);}
+  }
+ }
  private User map(ResultSet r)throws SQLException{return new User(r.getInt("id"),r.getString("name"),r.getString("email"),r.getString("country"));}
 }

@@ -1,19 +1,19 @@
-# Thực hành 527 - Thực thi SQL có sử dụng Transaction
+# Bài tập 529 - Luyện tập MySQL JDBC Transaction
 
-Dự án bổ sung `insertUpdateUseTransaction()` vào `IUserDAO` và `UserDAO`, cùng action `/users?action=test-use-tran` trong `UserServlet`.
+Phương thức `addUserTransaction(User)` dùng một `Connection` để thêm User và ghi nhật ký `user_audit` như một đơn vị nguyên tử.
 
 ```java
-Connection c = connection();
-c.setAutoCommit(false);
+connection.setAutoCommit(false);
 try {
-  // tạo bảng; INSERT Quynh, Ngan; UPDATE lương Quynh
-  c.commit();
-} catch (Exception e) {
-  c.rollback();
+  // INSERT users và lấy generated key
+  // INSERT user_audit với user_id vừa tạo
+  connection.commit();
+} catch (SQLException e) {
+  connection.rollback();
   throw e;
 } finally {
-  c.setAutoCommit(true);
+  connection.setAutoCommit(true);
 }
 ```
 
-Mọi INSERT và UPDATE thuộc một Transaction: thành công thì `commit`, bất kỳ lỗi nào thì `rollback`, bảo đảm nguyên tắc All-or-Nothing. Phiên bản hoàn chỉnh dùng đúng chỉ số tham số UPDATE và cập nhật lương Quynh thành `999.99`. Thông tin MySQL lấy từ `DB_USER` và `DB_PASSWORD`.
+Nếu câu lệnh thứ hai bị sửa sai để thử nghiệm, `rollback()` hủy cả User vừa thêm; khi cả hai lệnh đúng, `commit()` lưu đồng thời hai bản ghi. `UserServlet` gọi phương thức này cho action `insert`. `database.sql` tạo đủ bảng `users` và `user_audit`; kết nối sử dụng `DB_USER`, `DB_PASSWORD`.
