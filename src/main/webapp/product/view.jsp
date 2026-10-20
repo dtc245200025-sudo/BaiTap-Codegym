@@ -1,0 +1,1 @@
+<%@ page contentType="text/html;charset=UTF-8" %><!DOCTYPE html><html lang="vi"><head><title>Chi tiết sản phẩm</title></head><body><h1>${product.name}</h1><p>ID: ${product.id}</p><p>Giá: ${product.price}</p><p>Mô tả: ${product.description}</p><p>Nhà sản xuất: ${product.manufacturer}</p><a href="products">Quay lại danh sách</a></body></html>
