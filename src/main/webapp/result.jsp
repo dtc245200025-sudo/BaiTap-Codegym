@@ -1,0 +1,2 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8"><title>Kết quả tra cứu</title></head><body><h2>Kết quả</h2><p>Từ: <strong>${word}</strong></p><% if(request.getAttribute("result") != null){ %><p>Nghĩa: <strong>${result}</strong></p><% } else { %><p>Không tìm thấy từ này trong từ điển.</p><% } %><a href="index.jsp">Tra từ khác</a></body></html>
