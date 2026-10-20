@@ -1,20 +1,19 @@
-# Thực hành 526 - Thực thi SQL không sử dụng Transaction
+# Thực hành 527 - Thực thi SQL có sử dụng Transaction
 
-Dự án kế thừa ứng dụng quản lý User JDBC/MySQL và bổ sung `Employee` cùng phương thức `insertUpdateWithoutTransaction()` trong `IUserDAO`/`UserDAO`.
-
-Phương thức xóa và tạo lại bảng, chèn `Quynh`, `Ngan`, sau đó cố tình gán sai tham số câu UPDATE. Vì `autoCommit` vẫn bật, hai INSERT đã được ghi dù UPDATE thất bại, minh họa rác dữ liệu khi không dùng Transaction.
+Dự án bổ sung `insertUpdateUseTransaction()` vào `IUserDAO` và `UserDAO`, cùng action `/users?action=test-use-tran` trong `UserServlet`.
 
 ```java
-public void insertUpdateWithoutTransaction() throws SQLException {
-  try (Connection c = connection();
-       PreparedStatement ins = c.prepareStatement("INSERT INTO Employee(name,salary,created_Date) VALUES(?,?,?)");
-       PreparedStatement upd = c.prepareStatement("UPDATE Employee SET salary=? WHERE name=?")) {
-    // chèn Quynh và Ngan; mỗi lệnh tự động commit
-    upd.setBigDecimal(2, new BigDecimal("999.99")); // cố tình bỏ tham số 1
-    upd.setString(2, "Quynh");
-    upd.executeUpdate();
-  }
+Connection c = connection();
+c.setAutoCommit(false);
+try {
+  // tạo bảng; INSERT Quynh, Ngan; UPDATE lương Quynh
+  c.commit();
+} catch (Exception e) {
+  c.rollback();
+  throw e;
+} finally {
+  c.setAutoCommit(true);
 }
 ```
 
-`UserServlet` cung cấp URL `/users?action=test-without-tran`. Thông tin đăng nhập lấy từ biến môi trường `DB_USER` và `DB_PASSWORD`. Toàn bộ mã nguồn Maven, DAO, Servlet, JSP và `database.sql` có trong nhánh này.
+Mọi INSERT và UPDATE thuộc một Transaction: thành công thì `commit`, bất kỳ lỗi nào thì `rollback`, bảo đảm nguyên tắc All-or-Nothing. Phiên bản hoàn chỉnh dùng đúng chỉ số tham số UPDATE và cập nhật lương Quynh thành `999.99`. Thông tin MySQL lấy từ `DB_USER` và `DB_PASSWORD`.

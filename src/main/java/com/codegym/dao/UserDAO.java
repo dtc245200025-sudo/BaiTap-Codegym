@@ -17,5 +17,18 @@ public class UserDAO implements IUserDAO {
    upd.setBigDecimal(2,new BigDecimal("999.99"));upd.setString(2,"Quynh");upd.executeUpdate();
   }
  }
+ public void insertUpdateUseTransaction()throws SQLException{
+  String create="CREATE TABLE Employee(id INT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(100) NOT NULL,salary DECIMAL(15,2) NOT NULL,created_Date TIMESTAMP)";
+  try(Connection c=connection()){
+   c.setAutoCommit(false);
+   try(Statement st=c.createStatement();PreparedStatement ins=c.prepareStatement("INSERT INTO Employee(name,salary,created_Date) VALUES(?,?,?)");PreparedStatement upd=c.prepareStatement("UPDATE Employee SET salary=? WHERE name=?")){
+    st.execute("DROP TABLE IF EXISTS Employee");st.execute(create);
+    ins.setString(1,"Quynh");ins.setBigDecimal(2,new BigDecimal("10"));ins.setTimestamp(3,Timestamp.valueOf(LocalDateTime.now()));ins.executeUpdate();
+    ins.setString(1,"Ngan");ins.setBigDecimal(2,new BigDecimal("20"));ins.setTimestamp(3,Timestamp.valueOf(LocalDateTime.now()));ins.executeUpdate();
+    upd.setBigDecimal(1,new BigDecimal("999.99"));upd.setString(2,"Quynh");upd.executeUpdate();
+    c.commit();
+   }catch(Exception e){c.rollback();throw e;}finally{c.setAutoCommit(true);}
+  }
+ }
  private User map(ResultSet r)throws SQLException{return new User(r.getInt("id"),r.getString("name"),r.getString("email"),r.getString("country"));}
 }
