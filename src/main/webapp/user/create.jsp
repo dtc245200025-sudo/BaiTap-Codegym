@@ -1,0 +1,1 @@
+<%@ page contentType="text/html;charset=UTF-8" %><h1>Thêm User</h1><form method="post" action="users?action=insert"><p><input name="name" placeholder="Tên" required></p><p><input type="email" name="email" placeholder="Email" required></p><p><input name="country" placeholder="Quốc gia"></p><button>Lưu</button></form><a href="users">Quay lại</a>

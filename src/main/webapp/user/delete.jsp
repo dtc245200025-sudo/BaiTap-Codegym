@@ -1,0 +1,1 @@
+<%@ page contentType="text/html;charset=UTF-8" %><h1>Xóa User</h1><p>Bạn có chắc muốn xóa ${user.name}?</p><form method="post" action="users?action=delete"><input type="hidden" name="id" value="${user.id}"><button>Xác nhận xóa</button></form><a href="users">Hủy</a>
